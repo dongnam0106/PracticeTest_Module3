@@ -9,14 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"><!-- End layout styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/css/vendor.bundle.base.css">
+    <title>Sửa sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 
@@ -24,7 +18,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <p class="card-title" style="margin-bottom: 20px; float: right">Thêm mới / cập nhật sản phẩm</p>
+                <p class="card-title" style="margin-bottom: 20px; float: right">Cập nhật sản phẩm</p>
                 <form class="forms-sample" method="post" style="clear: both">
                     <div class="form-group">
                         <label for="id">ID</label>

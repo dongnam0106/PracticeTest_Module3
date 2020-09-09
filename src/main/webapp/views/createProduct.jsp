@@ -9,14 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"><!-- End layout styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/css/vendor.bundle.base.css">
+    <title>Thêm mới sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 
@@ -24,13 +18,13 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <p class="card-title" style="margin-bottom: 20px; float: right">Thêm mới / cập nhật sản phẩm</p>
+                <p class="card-title" style="margin-bottom: 20px; float: right">Thêm mới sản phẩm</p>
                 <form class="forms-sample" method="post" style="clear: both">
                     <div class="form-group">
                         <label for="id">ID</label>
                         <input type="text" class="form-control" id="id"
                                value="${product.getProductId()}"
-                               name="product-id" readonly>
+                               name="productId" readonly>
                     </div>
                     <div class="form-group">
                         <label for="name">Tên sản phẩm</label>
@@ -43,7 +37,7 @@
                                value="${product.getName()}"
                         </c:otherwise>
                         </c:choose>
-                               name="product-name">
+                               name="productName">
                     </div>
                     <div class="form-group">
                         <label for="price">Giá</label>
@@ -56,7 +50,7 @@
                                value="${product.getPrice()}"
                         </c:otherwise>
                         </c:choose>
-                               name="product-price">
+                               name="productPrice">
                     </div>
                     <div class="form-group">
                         <label for="quantity">Số lượng</label>
@@ -69,17 +63,17 @@
                                value="${product.getQuantity()}"
                         </c:otherwise>
                         </c:choose>
-                               name="product-quantity">
+                               name="productQuantity">
                     </div>
                     <div class="form-group">
                         <label for="color">Màu sắc</label>
                         <input type="text" class="form-control" id="color"
                                value="${product.getColor()}"
-                               name="product-color">
+                               name="productColor">
                     </div>
                     <div class="form-group">
                         <label for="category">Hãng</label>
-                        <select class="form-control" id="category" name="category-id">
+                        <select class="form-control" id="category" name="categoryId">
                             <c:forEach items="${categoryList}" var="category">
                                 <option value="${category.getId()}"
                                         <c:if test="${product.getCategory().getId() == category.getId()}">
@@ -93,15 +87,12 @@
                         <label for="description">Mô tả</label>
                         <textarea class="form-control" id="description" rows="4"
                                   value="${product.getDescription()}"
-                                  name="product-description">${product.getDescription()}</textarea>
+                                  name="productDes">${product.getDescription()}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">
                         <c:choose>
                             <c:when test="${action == 'create'}">
                                 Thêm mới
-                            </c:when>
-                            <c:when test="${action == 'edit'}">
-                                Cập nhật
                             </c:when>
                         </c:choose>
                     </button>

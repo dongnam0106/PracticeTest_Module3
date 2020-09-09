@@ -10,13 +10,7 @@
 <html>
 <head>
     <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"><!-- End layout styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 
@@ -24,11 +18,6 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <%--    <form action="${pageContext.request.contextPath}/users?action=search" method="post" style="margin: 0 auto">--%>
-                <%--        <label for="search-bar">Search</label>--%>
-                <%--        <input type="text" id="search-bar" name="country">--%>
-                <%--        <input type="submit">--%>
-                <%--    </form>--%>
                 <p class="card-title" style="margin-bottom: 20px">Danh sách sản phẩm</p>
                 <a href="${pageContext.request.contextPath}/home?action=create"
                    class="nav-link" style="margin-bottom: 10px"><i class="icon-plus"></i> Thêm mới</a>

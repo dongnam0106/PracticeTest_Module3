@@ -685,54 +685,54 @@
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="214" parent="210" name="productId">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-    </column>
-    <index id="215" parent="210" name="productId">
-      <ColNames>productId</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="216" parent="210" name="PRIMARY">
+    <key id="214" parent="210" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>categoryId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="217" parent="210" name="category_ibfk_1">
-      <ColNames>productId</ColNames>
-      <RefTableName>products</RefTableName>
-      <RefColNames>productId</RefColNames>
-    </foreign-key>
-    <column id="218" parent="211" name="productId">
+    <column id="215" parent="211" name="productId">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="219" parent="211" name="productName">
+    <column id="216" parent="211" name="productName">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="220" parent="211" name="productPrice">
+    <column id="217" parent="211" name="productPrice">
       <Position>3</Position>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="221" parent="211" name="productQuantity">
+    <column id="218" parent="211" name="productQuantity">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="222" parent="211" name="productColor">
+    <column id="219" parent="211" name="productColor">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="223" parent="211" name="productDes">
+    <column id="220" parent="211" name="productDes">
       <Position>6</Position>
       <DataType>text|0s</DataType>
     </column>
-    <key id="224" parent="211" name="PRIMARY">
+    <column id="221" parent="211" name="categoryId">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <index id="222" parent="211" name="categoryId">
+      <ColNames>categoryId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="223" parent="211" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>productId</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="224" parent="211" name="products_ibfk_1">
+      <ColNames>categoryId</ColNames>
+      <RefTableName>category</RefTableName>
+      <RefColNames>categoryId</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

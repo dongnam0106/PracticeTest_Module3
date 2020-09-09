@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class ProductServiceImp implements IProductService {
     @Override
     public List<Product> getAllProduct() {
         List<Product> productList = new LinkedList<>();
-        String query = "SELECT * FROM product\n" +
-                "JOIN category c on product.category_id = c.category_id;";
+        String sql = "SELECT * FROM products";
+//                "JOIN category c on products.categoryId = c.categoryId;";
         try {
-            statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Product product = parseResultSet(resultSet);
@@ -40,9 +41,9 @@ public class ProductServiceImp implements IProductService {
     @Override
     public Product getProductById(int id) {
         Product product = null;
-        String query = "SELECT * FROM product\n" +
-                "JOIN category c on product.category_id = c.category_id\n" +
-                "WHERE product_id = ?";
+        String query = "SELECT * FROM products"+
+                "JOIN category c on products.categoryId = c.categoryId" +
+                "WHERE productId = ?";
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
@@ -64,8 +65,8 @@ public class ProductServiceImp implements IProductService {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                category.setName(resultSet.getString("category_name"));
+                category.setId(resultSet.getInt("categoryId"));
+                category.setName(resultSet.getString("categoryName"));
                 categoryList.add(category);
             }
         } catch (SQLException e) {
@@ -77,7 +78,7 @@ public class ProductServiceImp implements IProductService {
     @Override
     public boolean addProduct(Product product) {
         int rowsAffect = 0;
-        String query = "INSERT INTO product(category_id, product_name, product_price, quantity, color, description) \n" +
+        String query = "INSERT INTO products(productId, productName, productPrice, productQuantity, productColor, productDes)" +
                 "VALUES (?,?,?,?,?,?);";
         try {
             statement = connection.prepareStatement(query);
@@ -92,14 +93,14 @@ public class ProductServiceImp implements IProductService {
     @Override
     public boolean editProduct(int id, Product product) {
         int rowsAffect = 0;
-        String query = "UPDATE product\n" +
-                "SET category_id   = ?,\n" +
-                "    product_name  = ?,\n" +
-                "    product_price = ?,\n" +
-                "    quantity      = ?,\n" +
-                "    color         = ?,\n" +
-                "    description   = ?\n" +
-                "WHERE product_id = ?;";
+        String query = "UPDATE product" +
+                "SET categoryId   = ?," +
+                "    productName  = ?," +
+                "    productPrice = ?," +
+                "    productQuantity      = ?," +
+                "    productColor         = ?," +
+                "    producDes   = ?" +
+                "WHERE productId = ?;";
         try {
             statement = connection.prepareStatement(query);
             setProduct(product);
@@ -114,7 +115,7 @@ public class ProductServiceImp implements IProductService {
     @Override
     public boolean deleteProduct(int id) {
         int rowsAffect = 0;
-        String query = "DELETE FROM product where product_id = ?";
+        String query = "DELETE FROM products where productId = ?";
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
@@ -128,9 +129,9 @@ public class ProductServiceImp implements IProductService {
     @Override
     public List<Product> searchProductByName(String name) {
         List<Product> productList = new LinkedList<>();
-        String query = "SELECT * FROM product\n" +
-                "                JOIN category c on product.category_id = c.category_id\n" +
-                "WHERE product_name LIKE ?;";
+        String query = "SELECT * FROM products" +
+                "                JOIN category c on products.categoryId = c.categoryId" +
+                "WHERE productName LIKE ?;";
         try {
             statement = connection.prepareStatement(query);
             statement.setString(1, name + "%");
@@ -156,14 +157,15 @@ public class ProductServiceImp implements IProductService {
     private Product parseResultSet(ResultSet resultSet) throws SQLException {
         Product product = new Product();
         Category category = new Category();
-        product.setProductId(resultSet.getInt("product_id"));
-        product.setName(resultSet.getString("product_name"));
-        product.setPrice(resultSet.getInt("product_price"));
-        product.setQuantity(resultSet.getInt("quantity"));
-        product.setColor(resultSet.getString("color"));
-        product.setDescription(resultSet.getString("description"));
-        category.setId(resultSet.getInt("c.category_id"));
-        category.setName(resultSet.getString("category_name"));
+        product.setProductId(resultSet.getInt("productId"));
+        product.setName(resultSet.getString("productName"));
+        product.setPrice(resultSet.getInt("productPrice"));
+        product.setQuantity(resultSet.getInt("productQuantity"));
+        product.setColor(resultSet.getString("productColor"));
+        product.setDescription(resultSet.getString("productDes"));
+        category.setId(resultSet.getInt("products.categoryId"));
+        category.setId(resultSet.getInt("c.categoryId"));
+        category.setName(resultSet.getString("categoryName"));
         product.setCategory(category);
         return product;
     }
